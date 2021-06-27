@@ -1,0 +1,41 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../includes/navigations.ejs') %>
+
+    <% if (errorMessages.length > 0) { %>
+    <div class="alert alert-danger text-center" role="alert">
+        <%= errorMessages %>
+    </div>
+    <% } %>
+
+    <% if (message.length > 0) { %>
+    <div class="alert alert-info text-center" role="alert">
+            <%= message %>
+    </div>
+    <% } %>
+
+    <form action="/auth/login" method="post">
+        <div class="w-50 ms-auto me-auto mt-5">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control" name="email" placeholder="Email" type="text">
+            </div>
+            <div class="mb-3">
+                <input class="form-control" name="password" placeholder="Password" type="password">
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="text-center">
+                <button class="btn btn-primary " type="submit">Log In</button>
+            </div>
+            <div class="text-center">
+                <a href="/auth/reset-password" >Forget Password </a>
+            </div>
+            <br>
+        </div>
+    </form>
+        
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<%- include('../includes/head.ejs') %>
+        <link type="text/css" rel="stylesheet" href="/css/product-details.css" />
+    </head>
+    <body>
+        <%- include('../includes/navigations.ejs') %>
+        <div class="container">
+            <div class="imgcontainer">
+                <img src="<%= product.imageURL %>" alt="<%= product.title %>"/>
+            </div>
+            <div class="details"> 
+                <h1> <%= product.title %> </h1>
+                <p id="price">Price: $<%= product.price %></p>
+                <p id="desc-label">Product Description </p>
+                <p id="desc"><%= product.description %></p>
+                <div>
+                       <span>Quantity:</span>
+                       <input id="prod-input" type="number" min="1" name="quantity" value="1"/>
+                </div>
+                <button id="cartbtn" onclick="addToCart()">Add to Cart</button>
+
+            </div>
+        </div>
+        <script>
+            function addToCart() {
+                let quantity = document.getElementById('prod-input').value || 1;
+                location.href= '<%=isAuthenticated%>' ? `/add-to-cart/<%=product.id%>/${quantity}` : '/auth/login';
+            }
+        </script>
+    </body>
+</html>
+
+
+      

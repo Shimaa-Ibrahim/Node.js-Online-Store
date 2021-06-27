@@ -1,0 +1,49 @@
+
+table{
+    margin: 10px auto;
+    text-align: center;
+  }
+  
+  table > tbody > tr.tableizer-firstrow > th {
+    padding: 10px;
+    background: lavenderblush;
+  }
+  
+  body > div.table > table > tbody > tr > td{
+    border: 4px solid #fff;
+    width: 10rem;
+    padding: 10px;
+    background: #f8f8f8;
+  }
+
+  img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+  }
+
+  .img{
+      text-align: center;
+  }
+  #order{
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 12px;
+    font-size:1rem ;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+  }
+#orders {
+  width: 20rem;
+
+}
+.btnt {
+  width: 60%;
+  font-size: 0.9rem;
+  padding: 2px;
+}

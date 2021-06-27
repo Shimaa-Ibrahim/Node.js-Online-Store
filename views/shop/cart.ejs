@@ -1,0 +1,57 @@
+<%- include('../includes/head.ejs') %>
+<link type="text/css" rel="stylesheet" href="/css/table.css" />
+</head>
+
+<body>
+    <%- include('../includes/navigations.ejs') %>
+
+
+
+    <% if (products.length > 0) { %>
+    <div class="table">
+        <table class="tableizer-table">
+            <tr class="title">
+                <td colspan="3"
+                    style="background-color: white; text-align: left; font-weight: bolder; font-size: 2rem;">ITEMS</td>
+                <td colspan="2" style="background-color: white; text-align: right;">
+                        <a id='order' href="/checkout">Order Now</button>
+                </td>
+            </tr>
+            <tr class="tableizer-firstrow">
+                <th></th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Remove From Cart</th>
+
+            </tr>
+            <% for (let product of products) { %>
+            <tr>
+                <td class="img"><img src="<%= product.imageURL? product.imageURL : product.productId.imageURL %>" alt="<%= product.title? product.title : product.productId.title %>" /></td>
+                <td><%= product.title? product.title : product.productId.title %></td>
+                <td> $<%= product.price? product.price : product.productId.price %> </td>
+                <td>
+                    <input class="form-control w-75 mx-auto quant" type="number" min="1" name="<%= product.productId? product.productId.id : product.id%>" value="<%= product.CartItems? product.CartItems.quantity: product.quantity %>">
+                </td>
+                <td><a class="btn btn-danger" href='/remove-from-cart/<%= product.id%>'">remove </a></td>
+            </tr>
+            <% } %>
+
+        </table>
+    </div>
+    <% } else { %>
+    <h2 style="text-align: center;">Cart is Empty!</h2>
+    <% } %>
+    <!-- send ajax request  -->
+    <script>
+        $(".quant").change(function(){
+            $.ajax({
+                url: '/add-to-cart/'+ $(this).attr('name') +"/"+ $(this).val(),
+                success: function(){
+                console.log("done");
+            }});
+        });
+    </script>
+</body>
+
+</html>

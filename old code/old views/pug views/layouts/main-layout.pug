@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        block styles
+        title #{title}
+    body
+
+        .topnav
+            a(href="/admin/add-prod", class=(path === '/admin/add-prod' ? 'active' : '')) ADD PRODUCT
+            a(href="/shop", class=(path== '/shop'? 'active' :'')) PRODUCTS
+        block content

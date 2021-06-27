@@ -1,0 +1,58 @@
+<%- include('../includes/head.ejs') %>
+        <link type="text/css" rel="stylesheet" href="/css/table.css" />
+    </head>
+    <body>
+        <%- include('../includes/navigations.ejs') %>
+
+
+
+<% if (orders.length > 0) { %>
+<div class="table table-borderless">
+        <table class="tableizer-table">
+            <tr class="title">
+                <td colspan="3" style="background-color: white; text-align: left; font-weight: bolder; font-size: 2rem;">ORDERS</td>
+            </tr>
+            <tr class="tableizer-firstrow">
+              <th>order Date</th>
+              <th>Order details</th>
+              <th>Total price</th>
+              <th>Order's invoice</th>
+
+           </tr>
+            <%let total = 0; for (let order of orders) { %>
+           <tr>
+              <td><%= order.createdAt.toUTCString() %></td>
+              <td id="orders">
+                    <table class="table table-bordered fw-light">
+                        <tr>
+                            <td>name</td>
+                            <td>price</td>
+                            <td>quantity</td>
+                        </tr>
+                        <% total = 0; for (let product of order.products) { %>
+                        <tr>
+                            <td> <%= product.product.title %> </td>
+                            <td> <%= product.product.price %> </td>
+                            <td> <%= product.quantity %> </td>
+                            
+                        </tr>
+                        <% total+= product.product.price * product.quantity } %> 
+                    </table>
+              </td>
+              
+              <td> <%= total.toFixed(2) %> </td>
+              <td>
+                <a class="btnt btn btn-primary" href='/orders/<%=order.id %>'" >INVOICE</a> 
+              </td>
+           </tr>
+           <% } %>   
+        
+        </table>
+     </div>
+     <% } else { %>
+        <h2 style="text-align: center;">Cart is Empty!</h2>
+    <% } %>
+
+    </body>
+</html>
+    

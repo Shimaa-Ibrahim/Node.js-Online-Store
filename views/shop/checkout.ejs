@@ -1,0 +1,52 @@
+<%- include('../includes/head.ejs') %>
+<link type="text/css" rel="stylesheet" href="/css/table.css" />
+<script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+<script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+    <%- include('../includes/navigations.ejs') %>
+    <div class="table">
+        <table class="tableizer-table">
+            <tr class="title">
+                <td colspan="3"
+                    style="background-color: white; text-align: left; font-weight: bolder; font-size: 2rem;">ITEMS</td>
+                <td colspan="2" style="background-color: white;">
+                    <button id="order" class="p-0 bg-dark rounded text-center dark"><small>Checkout</small></button>
+                </td>
+            </tr>
+            <tr class="tableizer-firstrow">
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+            <% let price = 0; for (let product of products) { price = product.CartItems? product.CartItems.quantity * +product.price : product.quantity * +product.productId.price %>
+            <tr>
+                <td><%= product.title? product.title : product.productId.title %></td>
+                <td> $<%= product.price? product.price : product.productId.price.toFixed(2) %> </td>
+                <td><%= product.CartItems? product.CartItems.quantity: product.quantity %></td>
+                <td><%= price.toFixed(2) %></td>
+            </tr>
+            <% } %>
+
+        </table>
+
+        <div class="text-center">Total Price : <%= total.toFixed(2) %></div>
+    </div>
+    <!-- stripe integration -->
+
+    <script type="text/javascript">
+        // Create an instance of the Stripe object with your publishable API key
+        var stripe = Stripe('<%= publishable_key %>');
+        var checkoutButton = document.getElementById("order");
+        checkoutButton.addEventListener('click', function () {
+              return stripe.redirectToCheckout({ 
+                  sessionId: '<%=sessionId %>' 
+                });
+        });
+      </script>
+
+</body>
+
+</html>

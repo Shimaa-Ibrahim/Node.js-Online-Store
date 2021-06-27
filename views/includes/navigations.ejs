@@ -1,0 +1,24 @@
+
+<div class="topnav">
+    <a href="/">ONLINESHOP</a>
+    <% if (isAuthenticated) { %>
+        <a href="/" class="<%= path === '/'? 'active' : '' %>" >SHOP</a>
+        <a href="/cart" class="<%= path === '/shop/cart'? 'active' : '' %>" >MY CART</a>
+        <a href="/orders" class="<%= path === '/shop/orders'? 'active' : '' %>" >ORDERS</a>
+        <% if (isAdmin) { %>
+            <a href="/admin/add-prod" class="<%= path === '/admin/add-prod' ? 'active' : '' %>" >ADD PRODUCT</a>
+            <a href="/admin/products" class="<%= path === '/admin/products'? 'active' : '' %>" >PRODUCTS</a>
+        <% } %>
+    <% } %>
+
+    <div style="position: fixed; right: 4px;">
+        <% if (isAuthenticated) { %>
+            <a href="/auth/logout">LOGOUT</a>
+        <% } else { %>
+            <a href="/auth/login" class="<%= path === '/auth/login'? 'active' : '' %>" >LOGIN</a>
+            <a href="/auth/register" class="<%= path === '/auth/register'? 'active' : '' %>" >REGISTER</a>
+        <% } %>
+    </div>
+
+</div>
+

@@ -1,0 +1,7 @@
+node_modules
+invoices/*
+images/*
+
+!invoices/.gitkeep
+!images/404emoji.png
+.env

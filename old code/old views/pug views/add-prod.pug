@@ -1,0 +1,11 @@
+extends layouts/main-layout.pug 
+
+block styles
+    link(rel="stylesheet", href="/css/main.css")
+
+block content
+    form(method="POST", action="/admin/add-prod")
+        #prod-container
+            label(for="prod-name") Product Name
+                input(type="text", placeholder="product name", name="prodName")
+            button(type="submit") Add Product
