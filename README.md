@@ -1,4 +1,3 @@
-live: https://nodejsstore.herokuapp.com/
 # Node.js-Online-Store
 #### Description:
 Web application built using MVC pattern.
